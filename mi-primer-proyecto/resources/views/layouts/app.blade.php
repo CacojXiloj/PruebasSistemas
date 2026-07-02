@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('titulo', 'Sistema Principal')</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Arial, sans-serif; background-color: #f4f4f9; display: flex; min-height: 100vh; }
@@ -23,8 +26,8 @@
 
     <nav class="sidebar">
         <h2>MI SISTEMA</h2>
-        <a href="#">🏠 Inicio</a>
-        <a href="#">🚗 Vehículos</a>
+        <a href="/panel">🏠 Inicio</a>
+        <a href="/vehiculos">🚗 Vehículos</a>
         <a href="#">👥 Clientes</a>
         <a href="#">⚙ Configuración</a>
     </nav>

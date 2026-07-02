@@ -1,17 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController; // <--- ¡Esta línea es la clave!
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VehiculoController; // <-- Agregamos al nuevo gerente
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hola', function () {
-    return "Hola XD, ya va queriendo la cosa";
-});
+// Módulo Dashboard
+Route::get('/panel', [DashboardController::class, 'inicio']);
 
-Route::get('/panel', [DashboardController::class, 'inicio']); // Aprovechemos y conectemos también el panel al controlador
-
-Route::get('/vehiculos/crear', [DashboardController::class, 'crear']);
-Route::post('/vehiculos/guardar', [DashboardController::class, 'guardar']);
+// Módulo Vehículos (Fase 1: Leer y Crear)
+Route::get('/vehiculos', [VehiculoController::class, 'index']);      // La Tabla
+Route::get('/vehiculos/crear', [VehiculoController::class, 'create']); // El Formulario
+Route::post('/vehiculos', [VehiculoController::class, 'store']);     // El Guardado
