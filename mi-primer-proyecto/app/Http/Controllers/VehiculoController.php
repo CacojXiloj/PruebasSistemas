@@ -34,4 +34,36 @@ class VehiculoController extends Controller
         // ¡Cambio clave! Al guardar, regresamos a la tabla, no al formulario.
         return redirect('/vehiculos')->with('success', '¡Vehículo guardado exitosamente!');
     }
+
+    // 4. Mostrar el formulario para EDITAR un vehículo
+    public function edit($id)
+    {
+        // Buscamos el vehículo en la base de datos usando el ID de la ruta
+        $vehiculo = Vehiculo::findOrFail($id);
+
+        // Mandamos a llamar a la vista 'edit' y le pasamos la información de ese vehículo
+        return view('vehiculos.edit', compact('vehiculo'));
+    }
+
+    // 5. Recibir los datos del formulario y sobreescribir en PostgreSQL
+    public function update(Request $request, $id)
+    {
+        // 1. Validar que no nos manden campos vacíos
+        $request->validate([
+            // TRUCO SENIOR: Le decimos a Laravel que la placa debe ser única, 
+            // PERO que ignore el ID del vehículo que estamos editando actualmente.
+            'placa' => 'required|unique:vehiculos,placa,' . $id,
+            'marca' => 'required',
+            'modelo' => 'required',
+        ]);
+
+        // 2. Buscar el vehículo exacto que queremos editar
+        $vehiculo = Vehiculo::findOrFail($id);
+
+        // 3. Sobreescribir los datos viejos con los nuevos que vinieron del formulario
+        $vehiculo->update($request->all());
+
+        // 4. Redirigir de vuelta a la tabla con un mensaje verde de victoria
+        return redirect('/vehiculos')->with('success', '¡Vehículo actualizado correctamente!');
+    }
 }

@@ -35,7 +35,7 @@
                     <td class="py-3 px-4">{{ $auto->marca }}</td>
                     <td class="py-3 px-4">{{ $auto->modelo }}</td>
                     <td class="py-3 px-4 text-center">
-                        <button class="text-blue-500 hover:text-blue-700 mr-2">✏️ Editar</button>
+                        <a href="/vehiculos/{{ $auto->id }}/editar" class="text-blue-500 hover:text-blue-700 mr-2">✏️ Editar</a>
                         <button class="text-red-500 hover:text-red-700">🗑️ Borrar</button>
                     </td>
                 </tr>

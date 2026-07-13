@@ -15,3 +15,6 @@ Route::get('/panel', [DashboardController::class, 'inicio']);
 Route::get('/vehiculos', [VehiculoController::class, 'index']);      // La Tabla
 Route::get('/vehiculos/crear', [VehiculoController::class, 'create']); // El Formulario
 Route::post('/vehiculos', [VehiculoController::class, 'store']);     // El Guardado
+// Módulo Vehículos (Fase 2: Editar)
+Route::get('/vehiculos/{id}/editar', [VehiculoController::class, 'edit']);
+Route::put('/vehiculos/{id}', [VehiculoController::class, 'update']);
