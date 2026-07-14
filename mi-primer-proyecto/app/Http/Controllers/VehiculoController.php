@@ -66,4 +66,17 @@ class VehiculoController extends Controller
         // 4. Redirigir de vuelta a la tabla con un mensaje verde de victoria
         return redirect('/vehiculos')->with('success', '¡Vehículo actualizado correctamente!');
     }
+
+    // 6. Eliminar definitivamente el vehículo de la base de datos
+    public function destroy($id)
+    {
+        // 1. Buscar el vehículo exacto por su ID o lanzar un error 404 si no existe
+        $vehiculo = Vehiculo::findOrFail($id);
+
+        // 2. Ejecutar la orden de eliminación en PostgreSQL
+        $vehiculo->delete();
+
+        // 3. Redirigir a la tabla general con un mensaje de éxito
+        return redirect('/vehiculos')->with('success', '¡Vehículo eliminado del sistema correctamente!');
+    }
 }

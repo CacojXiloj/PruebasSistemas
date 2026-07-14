@@ -36,7 +36,11 @@
                     <td class="py-3 px-4">{{ $auto->modelo }}</td>
                     <td class="py-3 px-4 text-center">
                         <a href="/vehiculos/{{ $auto->id }}/editar" class="text-blue-500 hover:text-blue-700 mr-2">✏️ Editar</a>
-                        <button class="text-red-500 hover:text-red-700">🗑️ Borrar</button>
+                        <form action="/vehiculos/{{ $auto->id }}" method="POST" class="inline-block" onsubmit="return confirm('¿Estás absolutamente seguro de eliminar este vehículo?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500 hover:text-red-700">🗑️ Borrar</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
